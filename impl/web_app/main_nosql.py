@@ -379,7 +379,7 @@ async def vector_search_words(natural_language):
         nosql_svc = CosmosNoSQLService()
         await nosql_svc.initialize()
 
-        docs = await nosql_svc.vector_search(embedding, 4)
+        docs = await nosql_svc.vector_search(embedding, limit=4)
         for idx, doc in enumerate(docs):
             print("doc {}: {}".format(idx, doc))
 

@@ -268,6 +268,7 @@ class CosmosNoSQLService:
     async def vector_search(self, embedding_value, embedding_attr="embedding", limit=4):
         sql = self.sql = self.vector_search_sql(embedding_value, embedding_attr, limit)
         docs = list()
+        self.set_container(ConfigService.graph_source_container())
         items_paged = self._ctrproxy.query_items(query=sql, parameters=[])
         async for item in items_paged:
             # cdf = CosmosDocFilter(item)
